@@ -1,0 +1,58 @@
+= Instalação do VirtualBox 4.3 (Fedora)
+:author: Paulo Jerônimo
+:email: pj@paulojeronimo.info
+:toc:
+:numbered:
+
+== Adicionando o repositório
+* Instale o repositório do VirtualBox para o Fedora, conforme a seguir:
+[source,bash]
+----
+$ sudo curl http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo -o /etc/yum.repos.d/virtualbox.repo
+----
+
+== Instalando pacotes necessários para a compilação
+[source,bash]
+----
+$ sudo yum -y group install c-development
+$ sudo yum -y install kernel-devel
+----
+
+== Instalando o VirtualBox
+[source,bash]
+----
+$ sudo yum -y install VirtualBox-4.3
+----
+* Verifique se foi criado o grupo vboxusers
+[source,bash]
+----
+$ grep vboxusers /etc/group
+----
+* Adicione seu usuário ao grupo vbox users e reexecute o comando anterior:
+[source,bash]
+----
+$ sudo gpasswd -a $USER vboxusers
+$ grep vboxusers /etc/group
+----
+
+== Quando a versão do kernel for modificada
+* Execute o passo a seguir SE tiver ocorrido algum erro durante a instalação do VirtualBox OU se o kernel do Linux tiver sido atualizado:
+[source,bash]
+----
+$ sudo /etc/init.d/vboxdrv setup
+----
+
+== Instalando o VirtualBox Extension Pack
+* Informe o número da versão do VirtualBox que você está utilizando:
+[source,bash]
+----
+$ VER=4.3.12
+----
+* Baixe e instale:
+[source,bash]
+----
+$ VEP=Oracle_VM_VirtualBox_Extension_Pack-$VER.vbox-extpack
+$ wget -c http://download.virtualbox.org/virtualbox/$VER/$VEP
+$ VBoxManage extpack install $VEP
+----
+

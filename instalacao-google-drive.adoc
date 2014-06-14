@@ -1,0 +1,43 @@
+= Instalação de um cliente para o Google Drive (Fedora)
+:author: Paulo Jerônimo
+:email: pj@paulojeronimo.info
+:toc:
+:numbered:
+
+== Instalando
+[source,bash]
+----
+$ sudo yum install ocaml ocaml-camlp4-devel ocaml-ocamldoc
+$ mkdir ~/Projects/github.com/OCamlPro
+$ cd !$
+$ git clone https://github.com/OCamlPro/opam.git
+$ cd opam
+$ ./configure
+$ make
+$ sudo make install
+$ sudo yum install m4 fuse fuse-devel libcurl-devel libsqlite3x-devel zlib-devel
+$ opam init
+$ opam update
+$ opam install google-drive-ocamlfuse
+$ ~/.opam/system/bin/google-drive-ocamlfuse
+----
+
+== Ajustando o PATH
+[source,bash]
+----
+$ export PATH=~/.opam/system/bin:$PATH
+----
+
+== Montando o Google Drive
+[source,bash]
+----
+$ mkdir -p ~/google-drive
+$ google-drive-ocamlfuse ~/google-drive
+----
+
+== Desmontando o Google Drive
+[source,bash]
+-----
+$ fusermount -u ~/google-drive
+-----
+

@@ -1,0 +1,73 @@
+= Instalação do Apache HTTPD (Fedora)
+:author: Paulo Jerônimo
+:email: pj@paulojeronimo.info
+:toc:
+:numbered:
+
+== Instalando o Pacote
+[source,bash]
+----
+$ sudo yum -y install httpd
+----
+
+== Iniciando e habilitando a inicialização automática
+[source,bash]
+----
+$ sudo systemctl start httpd
+$ sudo systemctl enable httpd
+----
+
+== Abrindo as portas no firewall
+[source,bash]
+----
+$ sudo firewall-cmd --permanent --add-service=http
+----
+
+== Configurando um diretório público para os documentos do seu usuário
+* Execute o comando a seguir observando sua saída. Ela apresenta algumas linhas relevantes da configuração atual:
+[source,bash]
+----
+$ sed -n '11,25p;31,35p' /etc/httpd/conf.d/userdir.conf
+----
+* Edite o arquivo a seguir, conforme a execução do sed e, em seguida, reexecute o comando anterior para conferir as alterações:
+[source,bash]
+----
+$ sudo sed -i '
+s/\(. *UserDir\) disabled/\1 public_html/g
+s/SymLinksIfOwnerMatch/FollowSymLinks/g
+' /etc/httpd/conf.d/userdir.conf
+----
+* Recarregue as configurações do Apache:
+[source,bash]
+----
+$ sudo systemctl reload httpd
+----
+* Ajuste e testes as permissões para o diretório $HOME, conforme a seguir:
+[source,bash]
+----
+$ sudo chmod 755 $HOME
+$ ls -ld $HOME
+----
+* Faça os ajustes necessários no SELinux:
+[source,bash]
+----
+$ sudo setsebool -P httpd_read_user_content 1
+$ sudo setsebool -P httpd_enable_homedirs 1
+----
+* Crie a pasta public_html e um arquivo index.html para validar o acesso via HTTP:
+[source,bash]
+----
+$ mkdir -p ~/public_html
+$ echo "Teste do $USER" > !$/index.html
+----
+* Abra o browser em http://localhost/~$USER/ (substitua $USER pelo nome do teu usuário) para verificar o acesso a página index.html;
+
+== Desfazendo a instalação
+* Para desfazer a instalação, simplesmente execute:
+[source,bash]
+----
+$ sudo yum -y remove httpd
+$ sudo rm -rf /etc/httpd
+----
+* Note, entretanto, que esses passos não removem as configurações realizadas na configuração de um diretório público para o usuário. Os passos para isso ainda não estão explicados aqui.
+
