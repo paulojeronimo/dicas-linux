@@ -46,7 +46,7 @@ $ sudo /etc/init.d/vboxdrv setup
 * Informe o número da versão do VirtualBox que você está utilizando:
 [source,bash]
 ----
-$ VER=4.3.12
+$ VER=4.3.14
 ----
 * Baixe e instale:
 [source,bash]
