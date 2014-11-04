@@ -32,15 +32,23 @@ $ grep vboxusers /etc/group
 [source,bash]
 ----
 $ sudo gpasswd -a $USER vboxusers
-$ grep vboxusers /etc/group
+$ !-2
 ----
 
-== Quando a versão do kernel for modificada
-* Execute o passo a seguir SE tiver ocorrido algum erro durante a instalação do VirtualBox OU se o kernel do Linux tiver sido atualizado:
+== Compilando o driver do VirtualBox
+* Compile o driver do VirtualBox, SE:
+. For sua primeira instalação OU
+. Tiver ocorrido algum erro durante a instalação OU
+. Quando o kernel do Linux tiver sido atualizado
 [source,bash]
 ----
 $ sudo /etc/init.d/vboxdrv setup
 ----
+* Se o comando acima estiver falhando no carregamento do módulo, uma possível causa talvez seja o fato de estar sendo utilizado UEFI e a opção 'Secure boot' estar habilitada. O VirtualBox não suporta isso. Algumas referências:
+. http://www.zdnet.com/blog/hardware/yes-uefi-secure-boot-could-lock-out-linux-from-windows-8-pcs/14897
+. http://mjg59.dreamwidth.org/9844.html
+. http://www.h-online.com/open/news/item/Aldi-PC-becomes-first-retail-PC-with-UEFI-Secure-Boot-1635893.html
+. https://wiki.manjaro.org/index.php?title=UEFI_-_D%C3%A9sactiver_le_Secure_Boot
 
 == Instalando o VirtualBox Extension Pack
 * Informe o número da versão do VirtualBox que você está utilizando:
