@@ -1,0 +1,18 @@
+= Instalação do Asciidoctor (e do RVM)
+:author: Paulo Jerônimo
+:email: pj@paulojeronimo.info
+:toc:
+:numbered:
+
+== Instalando
+
+[source,bash]
+----
+gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
+curl -sSL https://get.rvm.io | bash -s stable
+source ~/.profile
+rvm list known
+rvm install 2.2.0
+ruby --version
+gem install asciidoctor
+----
