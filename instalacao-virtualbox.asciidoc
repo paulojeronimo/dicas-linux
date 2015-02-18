@@ -51,10 +51,11 @@ $ sudo /etc/init.d/vboxdrv setup
 . https://wiki.manjaro.org/index.php?title=UEFI_-_D%C3%A9sactiver_le_Secure_Boot
 
 == Instalando o VirtualBox Extension Pack
-* Informe o número da versão do VirtualBox que você está utilizando:
+* Obtenha e verifique o número da versão do VirtualBox que você está utilizando:
 [source,bash]
 ----
-$ VER=4.3.18
+$ VER=$(VBoxManage -v | cut -d r -f 1)
+$ echo $VER
 ----
 * Baixe e instale:
 [source,bash]
