@@ -4,7 +4,16 @@
 :toc:
 :numbered:
 
-== Instalando através dos fontes
+== Instalação
+
+== A partir dos binários
+
+[source,bash]
+----
+curl http://folkswithhats.org/fedy-installer | sudo bash
+----
+
+== Através dos fontes (depende da instalação anterior de outros repositórios)
 
 [source,bash]
 ----
@@ -12,3 +21,4 @@ mkdir -p ~/Projects/github.com/folkswithhats && cd $_
 git clone https://github.com/folkswithhats/fedy.git && cd fedy
 sudo make install
 ----
+
