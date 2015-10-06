@@ -1,0 +1,14 @@
+= Instalação do Fedy
+:author: Paulo Jerônimo
+:email: pj@paulojeronimo.info
+:toc:
+:numbered:
+
+== Instalando através dos fontes
+
+[source,bash]
+----
+mkdir -p ~/Projects/github.com/folkswithhats && cd $_
+git clone https://github.com/folkswithhats/fedy.git && cd fedy
+sudo make install
+----
