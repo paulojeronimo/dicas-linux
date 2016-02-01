@@ -1,40 +1,12 @@
-= Instalação do Asciidoctor (e do RVM)
+= Instalação do Asciidoctor
 :author: Paulo Jerônimo
 :email: pj@paulojeronimo.info
 :toc:
 :numbered:
 
-== Instalando o RVM
-
-Baixar as chaves GPG:
-[source bash]
-----
-gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-curl -sSL https://get.rvm.io | bash -s stable
-----
-
-[NOTE]
-====
-Se o firewall estiver bloqueando a porta 11371 (utilizada pelo comando ``gpg``), acrescentar ':80' a string ``hkp://keys.gnupg.net`` para que seja utilizada a porta 80. (Ref: http://unix.stackexchange.com/questions/75892/keyserver-timed-out-when-trying-to-add-a-gpg-public-key)
-====
-
-Carregar o arquivo ``~/.profile`` e executar o RVM para listar as versões de Ruby disponíveis:
-[source,bash]
-----
-source ~/.profile
-rvm list known
-----
-
-== Instalando o Ruby
-
-Instalar uma das versões do Ruby que foram listadas. Exemplo:
-[source,bash]
-----
-rvm install 2.2
-ruby --version
-----
-
 == Instalando o Asciidoctor
+
+Instalar o Ruby. Uma alternativa é através do RVM, seguindo os passos descritos no arquivo link:instalacao-rvm.asciidoc[]
 
 Instalar a ``gem`` asciidoctor:
 [source,bash]

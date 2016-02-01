@@ -1,4 +1,4 @@
-= Instalação do Fedy
+= Instalação do Fedy (no Fedora 23)
 :author: Paulo Jerônimo
 :email: pj@paulojeronimo.info
 :toc:

@@ -1,0 +1,58 @@
+= Instalação do Ruby via RVM (no Fedora 23)
+:author: Paulo Jerônimo
+:email: pj@paulojeronimo.info
+:toc:
+:numbered:
+
+== Instalando o RVM
+
+Baixar as chaves GPG:
+[source bash]
+----
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+curl -sSL https://get.rvm.io | bash -s stable --auto-dotfiles
+----
+
+[NOTE]
+====
+Se o firewall estiver bloqueando a porta 11371 (utilizada pelo comando ``gpg``), acrescentar ':80' a string ``hkp://keys.gnupg.net`` para que seja utilizada a porta 80. (Ref: http://unix.stackexchange.com/questions/75892/keyserver-timed-out-when-trying-to-add-a-gpg-public-key)
+====
+
+Carregar o arquivo `~/.rvm/scripts/rvm`:
+[source,bash]
+----
+source ~/.rvm/scripts/rvm
+rvm list known
+----
+
+Baixar as dependências necessárias para a instalação do Ruby:
+[source,bash]
+----
+rvm requirements
+----
+
+Listar as versões disponíveis de Ruby:
+[source,bash]
+----
+rvm list known
+----
+
+== Instalando o Ruby
+
+Instalar uma das versões do Ruby que foram listadas. Exemplo:
+[source,bash]
+----
+rvm install 2.2.1
+ruby --version
+----
+
+Executar o comando a seguir para tornar essa versão a default:
+[source,bash]
+----
+rvm use 2.2.1 --default
+----
+
+== Problemas e soluções 
+
+. https://rvm.io/integration/gnome-terminal
+. http://stackoverflow.com/questions/18276701/getting-warning-path-is-not-properly-set-up-when-doing-rvm-use-2-0-0-defaul

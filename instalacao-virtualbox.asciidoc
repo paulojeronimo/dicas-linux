@@ -1,34 +1,39 @@
-= Instalação do VirtualBox (Fedora)
+= Instalação do VirtualBox (no Fedora 23)
 :author: Paulo Jerônimo
 :email: pj@paulojeronimo.info
 :toc:
 :numbered:
 
 == Adicionando o repositório
-* Instale o repositório do VirtualBox para o Fedora, conforme a seguir:
+
+Instale o repositório do VirtualBox para o Fedora, conforme a seguir:
 [source,bash]
 ----
 $ sudo curl http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo -o /etc/yum.repos.d/virtualbox.repo
 ----
 
 == Instalando pacotes necessários para a compilação
+
 [source,bash]
 ----
-$ sudo yum -y group install c-development
-$ sudo yum -y install kernel-devel
+$ sudo dnf -y group install c-development
+$ sudo dnf -y install kernel-devel
 ----
 
 == Instalando o VirtualBox
+
 [source,bash]
 ----
-$ sudo yum -y install VirtualBox-5.0
+$ sudo dnf -y install VirtualBox-5.0
 ----
-* Verifique se foi criado o grupo vboxusers
+
+Verifique se foi criado o grupo vboxusers
 [source,bash]
 ----
 $ grep vboxusers /etc/group
 ----
-* Adicione seu usuário ao grupo vbox users e reexecute o comando anterior:
+
+Adicione seu usuário ao grupo vbox users e reexecute o comando anterior:
 [source,bash]
 ----
 $ sudo gpasswd -a $USER vboxusers
@@ -36,28 +41,35 @@ $ !-2
 ----
 
 == Compilando o driver do VirtualBox
-* Compile o driver do VirtualBox, SE:
+
+Compile o driver do VirtualBox, se:
+
 . For sua primeira instalação OU
 . Tiver ocorrido algum erro durante a instalação OU
 . Quando o kernel do Linux tiver sido atualizado
 [source,bash]
 ----
-$ sudo /etc/init.d/vboxdrv setup
+$ sudo /usr/lib/virtualbox/vboxdrv.sh setup
 ----
-* Se o comando acima estiver falhando no carregamento do módulo, uma possível causa talvez seja o fato de estar sendo utilizado UEFI e a opção 'Secure boot' estar habilitada. O VirtualBox não suporta isso. Algumas referências:
-. http://www.zdnet.com/blog/hardware/yes-uefi-secure-boot-could-lock-out-linux-from-windows-8-pcs/14897
-. http://mjg59.dreamwidth.org/9844.html
-. http://www.h-online.com/open/news/item/Aldi-PC-becomes-first-retail-PC-with-UEFI-Secure-Boot-1635893.html
-. https://wiki.manjaro.org/index.php?title=UEFI_-_D%C3%A9sactiver_le_Secure_Boot
+
+Se o comando acima estiver falhando, estas podem ser algumas das causas:
+
+. O kernel pode ter sido atualizado. Nesse caso, reinicie a máquina e reexecute o comando acima.
+. Talvez esteja sendo utilizado UEFI e a opção 'Secure boot' esteja habilitada. O VirtualBox não suporta isso. Algumas referências para esse assunto:
+.. http://www.zdnet.com/blog/hardware/yes-uefi-secure-boot-could-lock-out-linux-from-windows-8-pcs/14897
+.. http://mjg59.dreamwidth.org/9844.html
+.. http://www.h-online.com/open/news/item/Aldi-PC-becomes-first-retail-PC-with-UEFI-Secure-Boot-1635893.html
+.. https://wiki.manjaro.org/index.php?title=UEFI_-_D%C3%A9sactiver_le_Secure_Boot
 
 == Instalando o VirtualBox Extension Pack
-* Obtenha e verifique o número da versão do VirtualBox que você está utilizando:
+
+Obtenha e verifique o número da versão do VirtualBox que você está utilizando:
 [source,bash]
 ----
-$ VER=$(VBoxManage -v | cut -d r -f 1)
-$ echo $VER
+$ VER=$(VBoxManage -v | cut -d r -f 1); echo $VER
 ----
-* Baixe e instale:
+
+Baixe e instale:
 [source,bash]
 ----
 $ VEP=Oracle_VM_VirtualBox_Extension_Pack-$VER.vbox-extpack
