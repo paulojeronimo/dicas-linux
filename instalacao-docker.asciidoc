@@ -1,0 +1,60 @@
+= Instalação do Docker (no Fedora 23)
+:author: Paulo Jerônimo
+:email: pj@paulojeronimo.info
+:toc:
+:numbered:
+
+== Instalação
+
+Execute o seguinte script:
+[source,bash]
+----
+curl -sSL https://get.docker.com/ | sudo sh
+----
+
+Crie o grupo docker:
+[source,bash]
+----
+sudo usermod -aG docker $USER
+----
+
+Inicie o daemon e configure-o para inicialização automática:
+[source,bash]
+----
+sudo systemctl start docker
+sudo systemctl enable docker
+----
+
+Faça o log out e logue-se novamente.
+
+Verifique se o docker está funcionando corretamente:
+[source,bash]
+----
+docker run hello-world
+----
+
+== Remoção
+
+Liste os pacotes instalados para verificar se o docker está entre eles:
+[source,bash]
+----
+dnf list installed | grep docker
+----
+
+Pare, desabilite o docker, e remova o pacote:
+[source,bash]
+----
+sudo systemctl stop docker
+sudo systemctl disable docker
+sudo dnf -y remove docker-engine
+----
+
+Para remover todas as imagens, contêineres e volumes, execute:
+[source,bash]
+----
+sudo rm -rf /var/lib/docker
+----
+
+== Referências
+
+. https://docs.docker.com/engine/installation/fedora/
