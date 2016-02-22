@@ -6,7 +6,7 @@
 
 == Instalando o Asciidoctor
 
-Instalar o Ruby. Uma alternativa é através do RVM, seguindo os passos descritos no arquivo link:instalacao-rvm.asciidoc[]
+Instalar o Ruby. Uma alternativa é através do RVM, seguindo os passos descritos no arquivo link:instalacao-ruby-via-rvm.asciidoc[]
 
 Instalar a ``gem`` asciidoctor:
 [source,bash]
