@@ -1,0 +1,17 @@
+= Instalação do Ruby (no Fedora 23)
+:author: Paulo Jerônimo
+:email: pj@paulojeronimo.info
+:toc:
+:numbered:
+
+== Procedimentos
+
+[source,bash]
+----
+sudo dnf -y install ruby ruby-tcltk rubygem-rake rubygem-test-unit redhat-rpm-config
+----
+
+== Referências
+
+. https://developer.fedoraproject.org/tech/languages/ruby/ruby-installation.html
+. https://developer.fedoraproject.org/tech/languages/ruby/gems-installation.html
