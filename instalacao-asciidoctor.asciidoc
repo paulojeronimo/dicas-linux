@@ -4,6 +4,10 @@
 :toc:
 :numbered:
 
+:uri-asciidoctor-pdf: https://github.com/asciidoctor/asciidoctor-pdf
+:uri-asciidocfx: http://www.asciidocfx.com/
+:uri-oracle-jdk: http://www.oracle.com/technetwork/pt/java/javase/downloads/index.html
+
 == Instalando o Asciidoctor
 
 Instalar o Ruby. Uma alternativa é através do RVM, seguindo os passos descritos no arquivo link:instalacao-ruby-via-rvm.asciidoc[]
@@ -24,3 +28,40 @@ Marcar a opção "Allow access to file URLs" em chrome://extensions para que o p
 ====
 Se desejar saber que outros plugins eu tenho instalados no meu Google Chrome, veja https://gist.github.com/paulojeronimo/c7d89809c9bcfb48e3eb[esse link].
 ====
+
+== Renderizando asciidoc no Firefox
+
+Instalar o plugin https://addons.mozilla.org/pt-br/firefox/addon/asciidoctorjs-live-preview/[Asciidoctor.js Live Preview].
+
+== Instalando o Asciidoctor PDF
+
+O {uri-asciidoctor-pdf}[Asciidoctor PDF] possibilita a renderização direta de arquivos AsciiDoc para o formato PDF.
+
+Instalação:
+
+[source,bash]
+----
+gem install asciidoctor-pdf
+----
+
+== Editando documentos AsciiDoc com o Asciidoc FX
+
+O projeto {uri-asciidocfx}[Asciidoc FX] fornece um editor, escrito em Java, que automaticamente transforma documentos AsciiDoc para os formatos HTML, PDF, Epub e Mobi. Ele foi um dos projetos ganhadores do prêmio https://www.oracle.com/corporate/pressrelease/dukes-award-102815.html[Duke Choice Award 2015].
+
+Instale o {uri-oracle-jdk}[Oracle JDK] seguindo os passos descritos no arquivo link:instalacao-oracle-jdk.asciidoc[].
+
+[NOTE]
+====
+O OpenJDK não pode ser utilizado devido a falta de suporte ao JavaFX, necessário para a execução do Asciidoc FX.
+====
+
+Baixe o https://sourceforge.net/projects/mscorefonts2/files/latest/download[mscorefonts2]. Instale-o através do RPM:
+
+[source,bash]
+----
+sudo rpm -i msttcore-fonts-installer-2.6-1.noarch.rpm
+----
+
+Baixe e descompacte o arquivo https://github.com/asciidocfx/AsciidocFX/releases/download/v1.4.5/AsciidocFX_Linux_No_JRE.tar.gz[AsciidocFX_Linux_No_JRE.tar.gz].
+
+Para iniciar o Asciidoc FX, execute o script ``AsciidocFX`` localizado na raiz do projeto.
